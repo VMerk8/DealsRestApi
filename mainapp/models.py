@@ -3,6 +3,7 @@ from django.db.models import Sum
 
 
 class UserQuerySet(models.QuerySet):
+
     def most_spends(self):
         most_spends_users = User.objects.annotate(total_sum=Sum('deals__total')).order_by('-total_sum')
         return most_spends_users
